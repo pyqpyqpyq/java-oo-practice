@@ -50,7 +50,7 @@ public class Main {
 
     public static void User_choice(People user) {
         System.out.print("你好，");
-        System.out.print(user);
+        System.out.print(user.getName());
         // 如果当前用户是新用户，则新建一个user将其缓存到map中，并将currentPeople指向该user
         System.out.println("，你可以");
         System.out.println("1.查看热搜排行榜");
@@ -87,15 +87,38 @@ public class Main {
             adminName2User.put(admin_name, admin);
             currentPeople = admin;
         }
-        admin(admin_name);
+        Admin_choice(currentPeople);
+    }
+    public static void Admin_choice(People admin) {
+        System.out.println("你好，");
+        System.out.println(admin.getName());
+        System.out.println(",你可以");
+        System.out.println("1.查看热搜排行榜");
+        System.out.println("2.添加热搜");
+        System.out.println("3.添加超级热搜");
+        System.out.println("4.退出");
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        switch (choice) {
+            case 1:
+                show_hot_search(admin);
+            case 2:
+                add_hot_search(admin);
+            case 3:
+                add_super_hot_search();
+            default:
+                init();
+        }
     }
 
-    public static void show_hot_search() {
+    public static void show_hot_search(People people) {
+//       hot_search_list.
         System.out.println("请输入您的昵称");
+        Admin_choice(people);
     }
 
     public static void vote_hot_search() {
-        System.out.println("请输入你要投票的热搜名称");
+        System.out.println(hot_search_list.);
 
     }
 
@@ -113,9 +136,11 @@ public class Main {
             hotsearch hs = new hotsearch(hot_search,1);
         }
         if (people instanceof Admin){
-            Admin admin = (Admin)people;
+//            Admin admin = (Admin)people;
+            User_choice(people);
         }else {
-            User user = (User)people;
+//            User user = (User)people;
+            Admin_choice(people);
         }
 
 
@@ -125,25 +150,5 @@ public class Main {
 
     }
 
-    public static void admin(String username) {
-        System.out.println("你好，");
-        System.out.println(username);
-        System.out.println(",你可以");
-        System.out.println("1.查看热搜排行榜");
-        System.out.println("2.添加热搜");
-        System.out.println("3.添加超级热搜");
-        System.out.println("4.退出");
-        Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1:
-                show_hot_search();
-            case 2:
-                add_hot_search();
-            case 3:
-                add_super_hot_search();
-            default:
-                init();
-        }
-    }
+
 }
