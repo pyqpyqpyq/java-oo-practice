@@ -1,4 +1,4 @@
-public class Admin {
+public class Admin extends People{
     private String name;
     private String pwd;
     public Admin(String name, String pwd){

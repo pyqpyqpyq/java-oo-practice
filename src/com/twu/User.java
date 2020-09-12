@@ -1,4 +1,4 @@
-public class User {
+public class User extends People{
     private String name;
     private int votes;
     public User(String name){
