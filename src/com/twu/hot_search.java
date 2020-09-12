@@ -30,6 +30,10 @@ public class hot_search {
     public int getTimes() {
         return times;
     }
+    public int isIf_super(){
+        if (if_super){return 1;}
+        else{return 0;}
+    }
 
     public void addTimes() {
         times++;
@@ -39,24 +43,19 @@ public class hot_search {
         return name;
     }
 
-    public boolean isIf_super() {
-        return if_super;
-    }
-
-
     public static void show_hot_search(People people) {
-//       show list
         Map<String, hot_search> hs = Main.hot_search_list;
         Set<Map.Entry<String, hot_search>> hsEntry = hs.entrySet();
         if (!hsEntry.isEmpty()) {
             List<hot_search> rankHs = hsEntry.stream()
-                    .sorted((o1, o2) -> o2.getValue().getTimes() - o1.getValue().getTimes())
+//                    .sorted((o1, o2) -> o2.getValue().getTimes() - o1.getValue().getTimes())
+                    .sorted((o1, o2) -> o2.getValue().getTimes()*(1+o2.getValue().isIf_super()) - o1.getValue().getTimes()*(1+o2.getValue().isIf_super()))
                     .map(Map.Entry::getValue)
                     .collect(Collectors.toList());
             for (hot_search item : rankHs) {
                 System.out.print(item.getName());
                 System.out.print("  ");
-                System.out.println(item.getTimes());
+                System.out.println(item.getTimes()*(1+item.isIf_super()));
             }
         }
         if (people instanceof Admin) {
