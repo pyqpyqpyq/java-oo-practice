@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class hot_search {
@@ -44,6 +45,7 @@ public class hot_search {
 
     public static void show_hot_search(People people) {
 //       show list
+        List<hot_search> hs = hot_search_list
         System.out.println("请输入您的昵称");
         Admin.Admin_choice(people);
     }
