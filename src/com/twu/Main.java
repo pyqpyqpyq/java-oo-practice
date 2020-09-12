@@ -1,15 +1,28 @@
+import com.sun.deploy.net.MessageHeader;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
+//    private static MessageHeader user_list;
+
     public static void main(String[] args) {
         init();
     }
-//    public class record{
-//        public String[][] record= new String[][];
-//    }
+
+    static Set<User> user_list = new HashSet<User>();
+    static Set<Admin> admin_list = new HashSet<Admin>();
+    static Set<hotsearch> memory_list = new HashSet<hotsearch>();
+//    ArrayList rec=new ArrayList();
+
 
     public static void init(){
         greet();
+//        Set<hotsearch> memory_list = new HashSet<hotsearch>();
+//        Set<User> user_list = new HashSet<User>();
+//        Set<Admin> admin_list = new HashSet<Admin>();
         user_choose();
     }
 
@@ -31,11 +44,15 @@ public class Main {
     }
 
     public static void switch_to_user(){
+        User using_user;
         System.out.println("请输入您的昵称");
         Scanner input= new Scanner(System.in);
         String username = input.nextLine();
         System.out.print("你好，");
         System.out.print(username);
+        if (user_list.toString().contains(username)){using_user=user_list(0);}
+        else {user_list.add(new User(username));}
+
         System.out.println("，你可以");
         System.out.println("1.查看热搜排行榜");
         System.out.println("2.给热搜事件投票");
@@ -45,9 +62,9 @@ public class Main {
         int choice = input.nextInt();
         switch (choice){
             case 1: show_hot_search();
-            case 2: vote_hotsearch();
-            case 3: buy_hotsearch();
-            case 4: add_hotsearch();
+            case 2: vote_hot_search();
+            case 3: buy_hot_search();
+            case 4: add_hot_search();
             default: init();
         }
 }
@@ -64,18 +81,18 @@ public class Main {
 
     }
 
-    public static void vote_hotsearch(){
+    public static void vote_hot_search(){
 
     }
 
-    public static void buy_hotsearch(){
+    public static void buy_hot_search(){
 
     }
-    public static void add_hotsearch(){
+    public static void add_hot_search(){
 
     }
 
-    public static void add_super_hotsearch(){
+    public static void add_super_hot_search(){
 
     }
     public static void admin(String username){
@@ -90,8 +107,8 @@ public class Main {
         int choice = input.nextInt();
         switch (choice){
             case 1:show_hot_search();
-            case 2:add_hotsearch();
-            case 3:add_super_hotsearch();
+            case 2:add_hot_search();
+            case 3:add_super_hot_search();
             default:init();
         }
     }
