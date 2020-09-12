@@ -49,7 +49,7 @@ public class User extends People{
             case 1:
                 hot_search.show_hot_search(user);
             case 2:
-                hot_search.vote_hot_search(user);
+                hot_search.vote_hot_search((User) user);
             case 3:
                 hot_search.buy_hot_search(user);
             case 4:
