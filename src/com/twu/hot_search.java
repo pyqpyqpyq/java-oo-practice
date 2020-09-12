@@ -46,15 +46,17 @@ public class hot_search {
     public static void show_hot_search(People people) {
         Map<String, hot_search> hs = Main.hot_search_list;
         Set<Map.Entry<String, hot_search>> hsEntry = hs.entrySet();
+        int i =0;
         if (!hsEntry.isEmpty()) {
             List<hot_search> rankHs = hsEntry.stream()
-//                    .sorted((o1, o2) -> o2.getValue().getTimes() - o1.getValue().getTimes())
                     .sorted((o1, o2) -> o2.getValue().getTimes()*(1+o2.getValue().isIf_super()) - o1.getValue().getTimes()*(1+o2.getValue().isIf_super()))
                     .map(Map.Entry::getValue)
                     .collect(Collectors.toList());
             for (hot_search item : rankHs) {
+                System.out.print(i++);
+                System.out.print("      ");
                 System.out.print(item.getName());
-                System.out.print("  ");
+                System.out.print("      ");
                 System.out.println(item.getTimes()*(1+item.isIf_super()));
             }
         }
@@ -87,14 +89,11 @@ public class hot_search {
         System.out.println("请输入你要购买的的热搜事件的名字");
         Scanner input = new Scanner(System.in);
         String hot_search = input.nextLine();
-        if (Main.hot_search_list.containsKey(hot_search)) {
             System.out.println("请输入你要购买的的热搜事件的排名");
             int ranking = input.nextInt();
             System.out.println("请输入你要购买的的热搜事件的金额");
             int money = input.nextInt();
-        } else {
-            System.out.println("热搜不存在。");
-        }
+
         User.User_choice(people);
     }
 
