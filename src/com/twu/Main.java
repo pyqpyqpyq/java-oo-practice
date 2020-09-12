@@ -112,7 +112,11 @@ public class Main {
         } else {
             hotsearch hs = new hotsearch(hot_search,1);
         }
-        if (people)
+        if (people instanceof Admin){
+            Admin admin = (Admin)people;
+        }else {
+            User user = (User)people;
+        }
 
 
     }
