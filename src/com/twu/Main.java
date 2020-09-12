@@ -1,21 +1,19 @@
 import java.util.*;
 
+
+
 public class Main {
-//    private static MessageHeader user_list;
+    static Map<String, User> userName2User = new HashMap<>();
+    static Map<String, Admin> adminName2User = new HashMap<>();
+    static Map<String, hot_search> hot_search_list = new HashMap<>();
+    static People currentPeople = null;
 
     public static void main(String[] args) {
         init();
     }
-
-    static Map<String, User> userName2User = new HashMap<>();
-    static Map<String, Admin> adminName2User = new HashMap<>();
-    static Map<String, hotsearch> hot_search_list = new HashMap<>();
-    static People currentPeople = null;
-
-
     public static void init() {
         greet();
-        user_choose();
+        Model_choose();
     }
 
     public static void greet() {
@@ -25,130 +23,17 @@ public class Main {
         System.out.println("3.退出");
     }
 
-    public static void user_choose() {
+    public static void Model_choose() {
         Scanner input = new Scanner(System.in);
         int user = input.nextInt();
         if (user == 1) {
-            switch_to_user();
+            User.switch_to_user();
         } else if (user == 2) {
-            switch_to_admin();
+            Admin.switch_to_admin();
         }
     }
 
-    public static void switch_to_user() {
-        System.out.println("请输入您的昵称");
-        Scanner input = new Scanner(System.in);
-        String user_name = input.nextLine();
-        if (userName2User.containsKey(user_name)) {
-            currentPeople = userName2User.get(user_name);
-        } else {
-            User user = new User(user_name, 10);
-            userName2User.put(user_name, user);
-            currentPeople = user;
-        }User_choice(currentPeople);
-    }
 
-    public static void User_choice(People user) {
-        System.out.print("你好，");
-        System.out.print(user.getName());
-        // 如果当前用户是新用户，则新建一个user将其缓存到map中，并将currentPeople指向该user
-        System.out.println("，你可以");
-        System.out.println("1.查看热搜排行榜");
-        System.out.println("2.给热搜事件投票");
-        System.out.println("3.购买热搜");
-        System.out.println("4.添加热搜");
-        System.out.println("5.退出");
-        Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1:
-                show_hot_search(user);
-            case 2:
-                vote_hot_search(user);
-            case 3:
-                buy_hot_search(user);
-            case 4:
-                add_hot_search(user);
-            default:
-                init();
-        }
-    }
-
-    public static void switch_to_admin() {
-        System.out.println("请输入您的昵称");
-        Scanner input = new Scanner(System.in);
-        String admin_name = input.nextLine();
-        System.out.println("请输入您的密码");
-        String pwd = input.nextLine();
-        if (adminName2User.containsKey(admin_name)) {
-            currentPeople = adminName2User.get(admin_name);
-        } else {
-            Admin admin = new Admin(admin_name, pwd);
-            adminName2User.put(admin_name, admin);
-            currentPeople = admin;
-        }
-        Admin_choice(currentPeople);
-    }
-    public static void Admin_choice(People admin) {
-        System.out.println("你好，");
-        System.out.println(admin.getName());
-        System.out.println(",你可以");
-        System.out.println("1.查看热搜排行榜");
-        System.out.println("2.添加热搜");
-        System.out.println("3.添加超级热搜");
-        System.out.println("4.退出");
-        Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1:
-                show_hot_search(admin);
-            case 2:
-                add_hot_search(admin);
-            case 3:
-                add_super_hot_search();
-            default:
-                init();
-        }
-    }
-
-    public static void show_hot_search(People people) {
-//       hot_search_list.
-        System.out.println("请输入您的昵称");
-        Admin_choice(people);
-    }
-
-    public static void vote_hot_search(People people) {
-        System.out.println(hot_search_list);
-
-    }
-
-    public static void buy_hot_search(People people) {
-
-    }
-
-    public static void add_hot_search(People people) {
-        System.out.println("请输入你要添加的热搜事件的名字");
-        Scanner input = new Scanner(System.in);
-        String hot_search = input.nextLine();
-        if (hot_search_list.containsKey(hot_search)) {
-            hot_search_list.get(hot_search).addTimes();
-        } else {
-            hotsearch hs = new hotsearch(hot_search,1);
-        }
-        if (people instanceof Admin){
-//            Admin admin = (Admin)people;
-            User_choice(people);
-        }else {
-//            User user = (User)people;
-            Admin_choice(people);
-        }
-
-
-    }
-
-    public static void add_super_hot_search() {
-
-    }
 
 
 }
