@@ -16,6 +16,10 @@ public class User extends People{
         return name;
     }
 
+    public int getVotes() {
+        return votes;
+    }
+
     public static void switch_to_user() {
         System.out.println("请输入您的昵称");
         Scanner input = new Scanner(System.in);

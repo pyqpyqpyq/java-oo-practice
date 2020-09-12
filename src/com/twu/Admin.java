@@ -32,8 +32,8 @@ public class Admin extends People{
         Admin_choice(Main.currentPeople);
     }
     public static void Admin_choice(People admin) {
-        System.out.println("你好，");
-        System.out.println(admin.getName());
+        System.out.print("你好，");
+        System.out.print(admin.getName());
         System.out.println(",你可以");
         System.out.println("1.查看热搜排行榜");
         System.out.println("2.添加热搜");

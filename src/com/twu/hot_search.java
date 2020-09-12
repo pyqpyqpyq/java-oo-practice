@@ -59,12 +59,17 @@ public class hot_search {
                 System.out.println(item.getTimes());
             }
         }
-        System.out.println("请输入您的昵称");
         Admin.Admin_choice(people);
     }
 
-    public static void vote_hot_search(People people) {
-        System.out.println(Main.hot_search_list);
+    public static void vote_hot_search(User user) {
+        System.out.print("请输入你要投票的热搜名称");
+        Scanner input = new Scanner(System.in);
+        String hot_search = input.nextLine();
+        System.out.print("请输入你要投票的热搜票数，：（你目前还有");
+        System.out.print(user.getVotes());
+        System.out.print("票）");
+        Admin.Admin_choice(user);
 
     }
 
@@ -80,6 +85,7 @@ public class hot_search {
             Main.hot_search_list.get(hot_search).addTimes();
         } else {
             hot_search hs = new hot_search(hot_search, 1);
+            Main.hot_search_list.put(hs.getName(),hs);
         }
         if (people instanceof Admin) {
             User.User_choice(people);
