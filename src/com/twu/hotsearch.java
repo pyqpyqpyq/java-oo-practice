@@ -27,6 +27,9 @@ public class hotsearch {
     public int getTimes() {
         return times;
     }
+    public void addTimes() {
+        times++;
+    }
 
     public String getName() {
         return name;
