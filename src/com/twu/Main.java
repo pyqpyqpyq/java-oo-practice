@@ -6,7 +6,8 @@ public class Main {
     static Map<String, User> userName2User = new HashMap<>();
     static Map<String, Admin> adminName2User = new HashMap<>();
     static Map<String, hot_search> hot_search_list = new HashMap<>();
-    static People currentPeople = null;
+//    static People currentPeople = null;
+    static boolean if_admin;
 
     public static void main(String[] args) {
         init();
@@ -27,8 +28,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         int user = input.nextInt();
         if (user == 1) {
+            if_admin=false;
             User.switch_to_user();
         } else if (user == 2) {
+            if_admin=true;
             Admin.switch_to_admin();
         }
     }
