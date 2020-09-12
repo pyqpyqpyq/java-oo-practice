@@ -62,13 +62,13 @@ public class Main {
         int choice = input.nextInt();
         switch (choice) {
             case 1:
-                show_hot_search(People user);
+                show_hot_search(user);
             case 2:
-                vote_hot_search(People user);
+                vote_hot_search(user);
             case 3:
-                buy_hot_search(People user);
+                buy_hot_search(user);
             case 4:
-                add_hot_search(People user);
+                add_hot_search(user);
             default:
                 init();
         }
@@ -117,12 +117,12 @@ public class Main {
         Admin_choice(people);
     }
 
-    public static void vote_hot_search() {
-        System.out.println(hot_search_list.);
+    public static void vote_hot_search(People people) {
+        System.out.println(hot_search_list);
 
     }
 
-    public static void buy_hot_search() {
+    public static void buy_hot_search(People people) {
 
     }
 
