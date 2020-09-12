@@ -47,7 +47,7 @@ public class Admin extends People{
             case 2:
                 hot_search.add_hot_search(admin);
             case 3:
-                hot_search.add_super_hot_search();
+                hot_search.add_super_hot_search(admin);
             default:
                 Main.init();
         }

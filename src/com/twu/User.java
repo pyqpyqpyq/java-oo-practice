@@ -20,6 +20,10 @@ public class User extends People{
         return votes;
     }
 
+    public void setVotes(int votes) {
+        this.votes = votes;
+    }
+
     public static void switch_to_user() {
         System.out.println("请输入您的昵称");
         Scanner input = new Scanner(System.in);
@@ -30,7 +34,8 @@ public class User extends People{
             User user = new User(user_name, 10);
             Main.userName2User.put(user_name, user);
             Main.currentPeople = user;
-        }User_choice(Main.currentPeople);
+        }
+        User_choice(Main.currentPeople);
     }
 
     public static void User_choice(People user) {

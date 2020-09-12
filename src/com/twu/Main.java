@@ -6,7 +6,7 @@ public class Main {
     static Map<String, User> userName2User = new HashMap<>();
     static Map<String, Admin> adminName2User = new HashMap<>();
     static Map<String, hot_search> hot_search_list = new HashMap<>();
-//    static People currentPeople = null;
+    static People currentPeople = null;
     static boolean if_admin;
 
     public static void main(String[] args) {
