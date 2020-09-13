@@ -6,6 +6,8 @@ public class hot_search {
     private String name;
     private int times;
     private boolean if_super;
+    private int money;
+    private int rank;
 
     public hot_search(String name, int times) {
         this.name = name;
@@ -13,10 +15,10 @@ public class hot_search {
         this.if_super = false;
     }
 
-    public hot_search(String name, int times, boolean if_super) {
-        this.name = name;
-        this.times = times;
-        this.if_super = if_super;
+    public hot_search(String name, int money, int rank){
+        this.name=name;
+        this.money=money;
+        this.rank=rank;
     }
 
     public void setSuper() {
@@ -43,6 +45,21 @@ public class hot_search {
         return name;
     }
 
+    public int getRank() {
+        return rank;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+    public void setRank(int rank){
+        this.rank=rank;
+    }
+
     public static void show_hot_search(People people) {
         Map<String, hot_search> hs = Main.hot_search_list;
         Set<Map.Entry<String, hot_search>> hsEntry = hs.entrySet();
@@ -60,6 +77,7 @@ public class hot_search {
                 System.out.println(item.getTimes()*(1+item.isIf_super()));
             }
         }
+
         if (people instanceof Admin) {
             Admin.Admin_choice(people);
         } else {
@@ -93,7 +111,32 @@ public class hot_search {
             int ranking = input.nextInt();
             System.out.println("请输入你要购买的的热搜事件的金额");
             int money = input.nextInt();
-
+        if (Main.rank_money.containsKey(ranking)) {
+            if (money > Main.rank_money.get(ranking).getMoney()){
+                if (Main.hot_search_list.containsKey(hot_search)){
+                    Main.hot_search_list.get(hot_search).setMoney(money);
+                    Main.hot_search_list.get(hot_search).setRank(ranking);
+                    hot_search bhs =Main.hot_search_list.get(hot_search);
+                    Main.rank_money.replace(ranking,Main.rank_money.get(ranking),bhs);
+                }else {
+                    hot_search bhs = new hot_search(hot_search, money,ranking);
+                    Main.rank_money.replace(ranking,Main.rank_money.get(ranking),bhs);
+                }
+                Main.hot_search_list.remove(Main.rank_money.get(ranking));
+                System.out.println("购买成功");
+            }
+            else {System.out.println("购买失败");}
+        } else {
+            if (Main.hot_search_list.containsKey(hot_search)){
+                Main.hot_search_list.get(hot_search).setMoney(money);
+                Main.hot_search_list.get(hot_search).setRank(ranking);
+                Main.rank_money.put(ranking,Main.hot_search_list.get(hot_search));
+            }else{
+            hot_search bhs = new hot_search(hot_search, money,ranking);
+            Main.rank_money.put(ranking,bhs);
+            }
+            System.out.println("购买成功");
+        }
         User.User_choice(people);
     }
 
@@ -112,8 +155,6 @@ public class hot_search {
         } else {
             User.User_choice(people);
         }
-
-
     }
 
     public static void add_super_hot_search(People people) {
